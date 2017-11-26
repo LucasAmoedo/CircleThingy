@@ -4,6 +4,8 @@
   <body>
     <canvas id="canvas" width="1000" height="1000"></canvas>
     <script>
+      
+      var graph = {};
 
       function findPositions(deg) {
         var x = 500 + 250 * Math.cos(deg);
@@ -11,26 +13,12 @@
         return [x.toFixed(0), y.toFixed(0)];
       }
       
-      function drawPoint(pos, ctx) {
-        var imageData = ctx.getImageData(pos[0], pos[1], 1, 1);
-        imageData.data[0] = 255;
-        imageData.data[1] = 0;
-        imageData.data[2] = 0;
-        imageData.data[3] = 255;
-        ctx.putImageData(imageData, pos[0], pos[1]);
-      }
-
-      function fakeAllTheMagic(a, b) {
-        var pos = findPositions(a);
-        drawPoint(pos, ctx);
+      function drawLine(a, b) {
               
         ctx.beginPath();
-        ctx.moveTo(pos[0], pos[1]);
+        ctx.moveTo(graph[a].x, graph[a].y);
 
-        pos = findPositions(b);
-        drawPoint(pos, ctx);
-
-        ctx.lineTo(pos[0], pos[1]);
+        ctx.lineTo(graph[b].x, graph[b].y);
         ctx.stroke();
 
       }
@@ -39,7 +27,7 @@
         var deg = 2 * Math.PI/numberOfPoints;
         for (var i = 0; i < numberOfPoints; i++) {
           var pos = findPositions(deg * i);
-          drawPoint(pos, ctx);
+          graph[i] = {x: pos[0], y: pos[1], v: []};
         }
                
       }
@@ -50,7 +38,9 @@
       ctx.arc(500, 500,250, 0, 2*Math.PI);
       ctx.stroke();
 
-      allTheMagic(2, ctx);
+
+      allTheMagic(4, ctx);
+      console.log(graph);
 
     </script>
   </body>
