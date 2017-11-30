@@ -106,6 +106,7 @@
         ctx.strokeStyle = "black";
         drawCircle();
         graph = {};
+        cycleNodes = [];
         var numberOfPoints = document.getElementById('points').value;
         var multiplier = document.getElementById('multiplier').value;
         allTheMagic(numberOfPoints, ctx);
@@ -115,7 +116,6 @@
           cycleMarker(cycleNodes[c], c);
         }
         drawLines();
-        console.log(graph);
       }
 
       var set = document.getElementById('set');
