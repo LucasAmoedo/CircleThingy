@@ -3,10 +3,11 @@ var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext("2d");
 var cycleNodes = [];
 var colors = ["red", "green", "blue", "orange", "pink", "purple", "yellow", "#00E640", "#663399", "89C4F4"];
+var radius = 250;
 
 function findPositions(deg) {
-  var x = 500 + 250 * Math.cos(deg);
-  var y = 300 + 250 * Math.sin(deg);
+  var x = radius + 5 + radius * Math.cos(deg);
+  var y = radius + 5 + radius * Math.sin(deg);
   return [x.toFixed(0), y.toFixed(0)];
 }
 
@@ -51,7 +52,7 @@ function allTheMagic(numberOfPoints, ctx) {
 
 function drawCircle() {
   ctx.beginPath();
-  ctx.arc(500, 300,250, 0, 2*Math.PI);
+  ctx.arc(radius + 5, radius + 5, radius, 0, 2*Math.PI);
   ctx.stroke();
 }
 
