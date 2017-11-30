@@ -96,9 +96,5 @@ function generateModularMultiplication() {
   drawLines();
 }
 
-var set = document.getElementById('set');
 drawCircle();
 
-set.addEventListener('click', function() {
-  generateModularMultiplication();
-});

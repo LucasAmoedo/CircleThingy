@@ -1,4 +1,14 @@
+.control-panel {
+  position: absolute;
+  background-color: white;
+  padding: 20;
+}
+
 input {
   display: block;
   margin-bottom: 15px;
+}
+
+canvas {
+  background-color: yellow;
 }
