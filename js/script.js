@@ -4,6 +4,8 @@ var ctx = canvas.getContext("2d");
 var cycleNodes = [];
 var colors = ["red", "green", "blue", "orange", "pink", "purple", "yellow", "#00E640", "#663399", "89C4F4"];
 var radius = 250;
+var cycles = {};
+var cyclesReport = document.getElementById('cycles-report');
 
 function findPositions(deg) {
   var x = radius + 5 + radius * Math.cos(deg);
@@ -22,6 +24,14 @@ function drawLine(a, b) {
   } else {
     var colorIndex = graph[b].inCycle % colors.length;
     ctx.strokeStyle = colors[colorIndex];
+    var cycleIndex = graph[b].inCycle;
+
+    if (cycles[cycleIndex] === undefined) {
+      cycles[cycleIndex] = {};
+      cycles[cycleIndex].color = colors[colorIndex];
+      cycles[cycleIndex].nodes = [];
+    } 
+    cycles[cycleIndex].nodes.push(a);
   }
    
   ctx.stroke();
@@ -80,7 +90,14 @@ function cycleMarker(key, index) {
   }
 }
 
+function reportCycles() {
+  for (var key in cycles) {
+    cyclesReport.innerHTML += '<p style="color:' + cycles[key].color + '">' + key + ': ' + cycles[key].nodes + '</p>';
+  }
+}
+
 function generateModularMultiplication() {
+  cyclesReport.innerHTML = '';
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.strokeStyle = "black";
   drawCircle();
@@ -95,6 +112,7 @@ function generateModularMultiplication() {
     cycleMarker(cycleNodes[c], c);
   }
   drawLines();
+  reportCycles();
 }
 
 drawCircle();
