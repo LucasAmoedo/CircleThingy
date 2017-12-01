@@ -23,3 +23,11 @@ input {
 .mdl-data-table td {
   text-align: left !important;
 }
+
+.report-button {
+  float: right;
+}
+
+#cycles-report {
+  display: none;
+}

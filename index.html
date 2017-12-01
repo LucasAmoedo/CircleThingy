@@ -20,6 +20,7 @@
         </div>
         <div class="mdl-card__actions">
           <button type="submit" id="set" class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary">Set</button>
+          <button type="button" id="cycles-report-button" disabled="true" class="mdl-button mdl-js-button mdl-button--raised mdl-button--primary report-button">Ciclos</button>
         </div>
       </div>
     </form>
@@ -27,14 +28,14 @@
       <canvas id="canvas" width="510" height="510"></canvas>
     </div>
     <div>
-      <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+      <table id="cycles-report" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
         <thead>
           <tr>
             <th>Ciclo</th>
             <th>Nós</th>
           </tr>
         </thead>
-        <tbody id="cycles-report">
+        <tbody id="cycles-report-body">
         </tbody>
       </table>
     </div>

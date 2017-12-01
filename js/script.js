@@ -6,6 +6,8 @@ var colors = ["red", "green", "blue", "orange", "pink", "purple", "yellow", "#00
 var radius = 250;
 var cycles = {};
 var cyclesReport = document.getElementById('cycles-report');
+var cyclesReportBody = document.getElementById('cycles-report-body');
+var cyclesReportButton = document.getElementById('cycles-report-button');
 
 function findPositions(deg) {
   var x = radius + 5 + radius * Math.cos(deg);
@@ -91,20 +93,26 @@ function cycleMarker(key, index) {
 }
 
 function reportCycles() {
-  console.log(cycles);
   for (var key in cycles) {
-    cyclesReport.innerHTML += "<tr>\
+    cyclesReportBody.innerHTML += "<tr>\
                               <td style='color:" + cycles[key].color + "'>" + key + "</td>\
-                              <td style='color:" + cycles[key].color + "'>" + cycles[key].nodes + "</td>\
-                              </tr>";
+                              <td style='color:" + cycles[key].color + "'>" + cycles[key].nodes + "</td>\ </tr>";
   }
+  cyclesReport.style.display = 'inline-block';
 }
 
+cyclesReportButton.addEventListener('click', function() {
+  reportCycles();
+});
+
 function generateModularMultiplication() {
-  cyclesReport.innerHTML = '';
+  cyclesReportBody.innerHTML = '';
+  cyclesReport.style.display = 'none';
+  cyclesReportButton.disabled = false;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.strokeStyle = "black";
   drawCircle();
+  cycles = {};
   graph = {};
   cycleNodes = [];
   var numberOfPoints = document.getElementById('points').value;
@@ -116,7 +124,6 @@ function generateModularMultiplication() {
     cycleMarker(cycleNodes[c], c);
   }
   drawLines();
-  reportCycles();
 }
 
 drawCircle();
