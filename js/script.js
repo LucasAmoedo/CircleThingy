@@ -91,8 +91,12 @@ function cycleMarker(key, index) {
 }
 
 function reportCycles() {
+  console.log(cycles);
   for (var key in cycles) {
-    cyclesReport.innerHTML += '<p style="color:' + cycles[key].color + '">' + key + ': ' + cycles[key].nodes + '</p>';
+    cyclesReport.innerHTML += "<tr>\
+                              <td style='color:" + cycles[key].color + "'>" + key + "</td>\
+                              <td style='color:" + cycles[key].color + "'>" + cycles[key].nodes + "</td>\
+                              </tr>";
   }
 }
 

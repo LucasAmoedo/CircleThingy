@@ -19,3 +19,7 @@ input {
   margin-bottom: 15px;
 }
 
+.mdl-data-table th,
+.mdl-data-table td {
+  text-align: left !important;
+}
